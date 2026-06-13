@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: accounts
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:oracle:thin:@nas:1521/xe}
+    driver-class-name: ${DATASOURCE_DRIVER:oracle.jdbc.OracleDriver}
+    username: ${DATASOURCE_USERNAME:MICROSERVICES}
+    password: ${DATASOURCE_PASSWORD:password}
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.OracleDialect
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
