@@ -5,7 +5,7 @@ services:
     build:
       # Sets the build context to the accounts directory
       context: ./accounts 
-      dockerfile: Dockerfile-accounts
+      dockerfile: Dockerfile
     container_name: accounts-service
     ports:
       - "8080:8080" 
@@ -20,7 +20,7 @@ services:
     build:
       # Sets the build context to the internal-transfers directory
       context: ./internal-transfers 
-      dockerfile: Dockerfile-internal-transfers
+      dockerfile: Dockerfile
     container_name: internal-transfer-service
     ports:
       - "8081:8080" 
