@@ -11,12 +11,23 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class AsyncConfig {
     @Bean(name = "telemetryExecutor")
-    public Executor taskExecutor() {
+    public Executor telemetryExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(5);
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(100);
         executor.setThreadNamePrefix("TelemetryThread-");
+        executor.initialize();
+        return executor;
+    }
+
+    @Bean(name = "notificationExecutor")
+    public Executor notificationExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(100);
+        executor.setThreadNamePrefix("NotificationThread-");
         executor.initialize();
         return executor;
     }

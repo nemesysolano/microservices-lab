@@ -13,4 +13,9 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: sa
+  kafka:
+    bootstrap-servers: nas:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
