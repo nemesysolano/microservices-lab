@@ -1,1 +1,38 @@
- 
+version: '3.8'
+
+services:
+  accounts:
+    build:
+      # Sets the build context to the accounts directory
+      context: ./accounts 
+      dockerfile: Dockerfile-accounts
+    container_name: accounts-service
+    ports:
+      - "8080:8080" 
+    environment:
+      - DATASOURCE_URL=jdbc:oracle:thin:@nas:1521/xe
+      - DATASOURCE_USERNAME=MICROSERVICES
+      - DATASOURCE_PASSWORD=password
+    networks:
+      - app-network
+
+  internal-transfer:
+    build:
+      # Sets the build context to the internal-transfers directory
+      context: ./internal-transfers 
+      dockerfile: Dockerfile-internal-transfers
+    container_name: internal-transfer-service
+    ports:
+      - "8081:8080" 
+    environment:
+      - ACCOUNTS_URL=http://accounts:8080
+      - MONGO_DB_URI=mongodb://system:password@nas:27017/telemetry?authSource=admin
+      - KAFKA_HOST=nas:9092
+    depends_on:
+      - accounts
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
