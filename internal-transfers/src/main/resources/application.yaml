@@ -1,3 +1,16 @@
 spring:
   application:
-    name: internal
+    name: internal-transfer
+    client:
+      accounts:
+        url: ${ACCOUNTS_URL:http://192.168.8.206:8080}
+  mongodb:
+    # Construct the URI using your default values
+    uri: ${MONGO_DB_URI:mongodb://system:password@nas:27017/telemetry?authSource=admin}
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+

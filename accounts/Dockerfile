@@ -12,3 +12,5 @@ EXPOSE 8080
 
 # Run the JAR file
 ENTRYPOINT ["java", "-jar", "accounts-1.jar"]
+
+# docker run --env-file docker-run.env
